@@ -9,14 +9,35 @@
  */
 
 export function minBy(array, cb) {
-  // Your code goes here...
-
+  if (array.length === 0) {
+    return undefined;
+  }
+  else {
+  var min = cb(array[0]);
+  var value = undefined;
+  for (let elem of array) {
+    if (cb(elem) < min) {
+      min = cb(elem);
+      value = elem;
+    }}}
+  return value;
 }
 
 export function maxBy(array, cb) {
-  // Your code goes here...
-
+  if (array.length === 0) {
+    return undefined;
+  }
+  else {
+  var max = cb(array[0]);
+  var value = undefined;
+  for (let elem of array) {
+    if (cb(elem) > max) {
+      max = cb(elem);
+      value = elem;
+    }}}
+  return value;
 }
+
 
 
 // === TEST YOURSELF ===
