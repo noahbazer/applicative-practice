@@ -9,7 +9,7 @@
  */
 export function find(array, callback) {
   for (let el of array) {
-    if (el.v) {
+    if (callback(el)) {
       return el;
     }
   }
