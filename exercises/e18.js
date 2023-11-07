@@ -5,35 +5,24 @@
  */
 
 export function getGreatestDiscoveryYear(data) {
-  const yearCategories = data.asteroids.reduce((accumulator, currentValue) => {
-    const filtered = data.asteroids.filter((asteroid) => asteroid.discoveryYear === currentValue.discoveryYear);
-    const count = filtered.length;
+  const yearCounts = data.asteroids.reduce((counts, asteroid) => {
+    const year = asteroid.discoveryYear;
 
-    return [
-    ...accumulator,
-    {value: currentValue.discoveryYear, count: count}
-    ];
-  }, []);
+    //I do not understand this line. Any chance you could explain to me how the OR operator works here?
+    counts[year] = (counts[year] || 0) + 1;
+    return counts;
+  }, {});
 
-  function callback(category) {
-    return category.count;
-  }
-
-  function maxBy(array, cb) {
-    if (array.length === 0) {
-      return undefined;
+  let maxYear = null;
+  let maxCount = 0;
+  for (const year in yearCounts) {
+    if (yearCounts[year] > maxCount) {
+      maxCount = yearCounts[year];
+      maxYear = parseInt(year);
     }
-    else {
-    var max = cb(array[0]);
-    var value = array[0].value;
-    for (let elem of array) {
-      if (cb(elem) > max) {
-        max = cb(elem);
-        value = elem.value;
-      }}}
-    return value;
   }
-return (maxBy(yearCategories, callback));
+
+  return maxYear;
 }
 
 // === TEST YOURSELF ===

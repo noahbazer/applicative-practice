@@ -5,12 +5,10 @@ import { data } from "../data/data";
 // Return example: 'Planet Name'
 
 export function findPlanetNameByMoon(data, moonName) {
-  var planetNames = data.planets.filter(function(planet) {
-    return planet.moons;
-  }).find(function (planet) {
-    return planet.moons.includes(moonName);
-  }).name;
-  return planetNames;
+  return data.planets
+  .filter((planet) => planet.moons)
+  .find((planet) => planet.moons.includes(moonName))
+  .name;
 }
 
 
