@@ -8,7 +8,7 @@ export function getGreatestDiscoveryYear(data) {
   const yearCounts = data.asteroids.reduce((counts, asteroid) => {
     const year = asteroid.discoveryYear;
 
-    //I do not understand this line. Any chance you could explain to me how the OR operator works here?
+    //Upon further studying, this makes perfect sense. Thank you!!
     counts[year] = (counts[year] || 0) + 1;
     return counts;
   }, {});
